@@ -5,7 +5,7 @@
 #include <conio.h>
 
 
-using namespace std;
+
 void ClearScreen()
 {
 	HANDLE                     hStdOut;
@@ -41,11 +41,25 @@ void ClearScreen()
 
 	/* Move the cursor home */
 	SetConsoleCursorPosition(hStdOut, homeCoords);
-}
+} // essa clear screen é uma função que roubei da internet
 int main()
 {
 	while (true) {
 
+		
+
+		ClearScreen();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		setlocale(LC_ALL, "Portuguese");
 		ClearScreen();
 		float cps_min;
@@ -57,28 +71,28 @@ int main()
 		int delaycps;
 		int controle;
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		cout << "\nWelcome to ";
+		std::cout << "\nWelcome to ";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
-		cout << "MacacoClicker";
+		std::cout << "MacacoGay";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN );
-		cout << " (MButton - Click , DEL - Change CPS , F4 - Quit)";
+		std::cout << " (MButton - Click , DEL - Change CPS , F4 - Quit)";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-		cout << "\nMinimum CPS: ";
-		cin >> cps_min;
-		cout << "Maximum CPS: ";
-		cin >> cps_max;
+		std::cout << "\nMinimum CPS: ";
+		std::cin >> cps_min;
+		std::cout << "Maximum CPS: ";
+		std::cin >> cps_max;
 		cps_min_ms = ((1 / cps_min) * 1000);
 		cps_max_ms = ((1 / cps_max) * 1000);
 		range = cps_min_ms - cps_max_ms;
-		cout << "\n\n\n";
+		std::cout << "\n\n\n";
 		controle = 1;
 
 		while (controle == 1)
 		{
 			Sleep(20);
-			random_device rd{}; //(hopefully) truly random device
-			mt19937 engine{ rd() }; //seed a pseudo rng with random_device
-			uniform_int_distribution<int> d(1, 1000); //1 to 10, inclusive
+			std::random_device rd{}; //(hopefully) truly random device
+			std::mt19937 engine{ rd() }; //seed a pseudo rng with random_device
+			std::uniform_int_distribution<int> d(1, 1000); //1 to 10, inclusive
 			delayy = (d(engine) % range) + cps_max_ms;
 			delaycps = (1 / (delayy / 1000));
 			if (GetAsyncKeyState(VK_MBUTTON))
@@ -94,14 +108,21 @@ int main()
 			}
 			Sleep(delayy);
 
-			cout << ("\r                           ");
-			cout << ("\rCps: ") << (delaycps);
+			std::cout << ("\r                           ");
+			std::cout << ("\rCps: ") << (delaycps);
 
 			if (GetAsyncKeyState(0x2E))
 			{
 				Sleep(1);
 				
 				controle = 0;
+
+			}
+			if (GetAsyncKeyState(0x73))
+			{
+				Sleep(1);
+				
+				exit(0);
 
 			}
 			Sleep(2);
